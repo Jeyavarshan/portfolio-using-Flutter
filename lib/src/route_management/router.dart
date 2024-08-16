@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:port/src/screens/homepage.dart';
+import 'package:port/src/screens/HomePages/homepage.dart';
 
 GoRouter route = GoRouter(initialLocation: '/Home', routes: [
   GoRoute(
@@ -11,8 +11,4 @@ GoRouter route = GoRouter(initialLocation: '/Home', routes: [
 enum Routes {
   splash,
   home,
-  boring,
-  pendulum,
-  metaballs,
-  sparkles,
 }

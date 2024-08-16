@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:port/src/screens/homepage.dart';
+import 'package:port/src/screens/HomePages/homepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Portofolio',
+      title: 'portofolio',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,

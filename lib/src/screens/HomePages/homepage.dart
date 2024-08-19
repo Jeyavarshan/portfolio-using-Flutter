@@ -11,7 +11,7 @@ class Homepage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Widget _buildThemeToggle() {
+    Widget buildThemeToggle() {
       final isDarkMode = ref.watch(appThemeModeProvider) == AppThemeMode.dark;
 
       return IconButton(
@@ -22,10 +22,8 @@ class Homepage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColorDark,
-        foregroundColor: Theme.of(context).primaryColorLight,
         title: const Text("My-Portfolio"),
-        actions: [_buildThemeToggle()],
+        actions: [buildThemeToggle()],
       ),
       body: const SingleChildScrollView(
         child: Column(

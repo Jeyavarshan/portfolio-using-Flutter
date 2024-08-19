@@ -13,8 +13,7 @@ class Homesection extends ConsumerWidget {
         Expanded(
           child: Container(
             height: 1050,
-            color: Colors.black,
-            child: const Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GlitchText(
@@ -24,7 +23,7 @@ class Homesection extends ConsumerWidget {
                   overflow: TextOverflow.ellipsis,
                   font: "Times New Roman",
                   offset: 3,
-                  fontColor: Colors.white,
+                  fontColor: Theme.of(context).colorScheme.onSurface,
                   wordSpacing: 1,
                   letterSpacing: 1,
                 ),
@@ -35,7 +34,6 @@ class Homesection extends ConsumerWidget {
         Expanded(
             child: Container(
           height: 1050,
-          color: Theme.of(context).focusColor,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: SizedBox(

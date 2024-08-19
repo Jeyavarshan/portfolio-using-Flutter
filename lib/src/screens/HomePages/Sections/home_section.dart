@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:glitch_text/glitch_text.dart';
 
-class Homesection extends StatelessWidget {
+class Homesection extends ConsumerWidget {
   const Homesection({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       children: [
         Expanded(
@@ -34,7 +35,7 @@ class Homesection extends StatelessWidget {
         Expanded(
             child: Container(
           height: 1050,
-          color: Colors.black,
+          color: Theme.of(context).focusColor,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: SizedBox(

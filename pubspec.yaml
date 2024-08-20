@@ -16,18 +16,19 @@ dependencies:
   shared_preferences: ^2.3.2
   glitch_text: ^0.1.2
   flutter_gen_runner: ^5.4.0
-  build_runner: ^2.4.9
+  build_runner:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
 
 flutter:
   uses-material-design: true
 
   assets:
     - assets/certificates/
+    - assets/skills/
 
 flutter_gen:
   output: lib\src\core\assets\

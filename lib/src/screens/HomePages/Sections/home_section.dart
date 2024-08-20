@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:glitch_text/glitch_text.dart';
 
@@ -11,7 +10,7 @@ class Homesection extends ConsumerWidget {
     return Row(
       children: [
         Expanded(
-          child: Container(
+          child: SizedBox(
             height: 1050,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -32,7 +31,7 @@ class Homesection extends ConsumerWidget {
           ),
         ),
         Expanded(
-            child: Container(
+            child: SizedBox(
           height: 1050,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),

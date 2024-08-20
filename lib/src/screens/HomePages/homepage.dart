@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:port/src/screens/HomePages/Sections/about_us_section.dart';
+import 'package:port/src/screens/HomePages/Sections/about_me_section.dart';
+import 'package:port/src/screens/HomePages/Sections/certification_section.dart';
 
 import 'package:port/src/screens/HomePages/Sections/home_Section.dart';
 import 'package:port/src/screens/HomePages/Sections/skills_section.dart';
+import 'package:port/src/screens/Projects/projects.dart';
 import 'package:port/src/services/app_theme.dart';
 
 class Homepage extends ConsumerWidget {
@@ -23,11 +25,27 @@ class Homepage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("My-Portfolio"),
-        actions: [buildThemeToggle()],
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute<dynamic>(
+                      builder: (context) => const Projects(),
+                    ));
+              },
+              child: const Text("Projects")),
+          buildThemeToggle()
+        ],
       ),
       body: const SingleChildScrollView(
         child: Column(
-          children: [Homesection(), AboutUs(), Skills()],
+          children: [
+            Homesection(),
+            SizedBox(width: 1920, height: 700, child: AboutUsSection()),
+            Skills(),
+            Certification()
+          ],
         ),
       ),
     );

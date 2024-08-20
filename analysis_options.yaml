@@ -15,7 +15,7 @@ analyzer:
 
   errors:
     invalid_annotation_target: ignore
-    file_names: error
+    file_names: ignore error
     prefer_relative_imports: error
     non_constant_identifier_names: error
     camel_case_types: error

@@ -6,16 +6,41 @@ class Skills extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      children: [
-        Container(
-          width: 1920,
-          height: 500,
-          child: const Center(
-            child: Text("skills"),
+    List<String> skills = [
+      "Flutter",
+      "Dart",
+      "Riverpod",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Java",
+      "J2EE",
+      "Hibernate",
+      "JQuery",
+      "SQL",
+      "MySQL",
+      "MongoDB",
+      "Asp .NET"
+    ];
+    return GridView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 6,
+          mainAxisSpacing: 10,
+          childAspectRatio: 16 / 9,
+          crossAxisSpacing: 4),
+      itemCount: skills.length,
+      itemBuilder: (context, index) {
+        return Card(
+          child: Container(
+            alignment: Alignment.center,
+            width: 30,
+            height: 20,
+            child: Center(child: Text(skills[index])),
           ),
-        )
-      ],
+        );
+      },
     );
   }
 }

@@ -21,7 +21,7 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'portofolio',
+      title: 'portofolio',  
       theme: ThemeData(
         brightness: appThemeMode == AppThemeMode.light
             ? Brightness.light

@@ -43,7 +43,7 @@ class Homepage extends ConsumerWidget {
           children: [
             Homesection(),
             SizedBox(width: 1920, height: 700, child: AboutUsSection()),
-            Skills(),
+            AnimatedSkills(),
             Certification()
           ],
         ),

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:port/src/screens/HomePages/homepage.dart';
 import 'package:port/src/services/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'src/route_management/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,16 +20,16 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appThemeMode = ref.watch(appThemeModeProvider);
 
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'portofolio',  
+      title: 'portofolio',
       theme: ThemeData(
         brightness: appThemeMode == AppThemeMode.light
             ? Brightness.light
             : Brightness.dark,
         useMaterial3: true,
       ),
-      home: const Homepage(),
+      routerConfig: route,
     );
   }
 }

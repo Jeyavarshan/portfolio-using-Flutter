@@ -17,6 +17,7 @@ dependencies:
   glitch_text: ^0.1.2
   flutter_gen_runner: ^5.4.0
   build_runner:
+  palette_generator: ^0.3.0
 
 dev_dependencies:
   flutter_test:

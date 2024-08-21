@@ -1,15 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palette_generator/palette_generator.dart';
 
-import '../../../core/assets/assets.gen.dart';
-
-class Skills extends ConsumerWidget {
+class Skills extends ConsumerStatefulWidget {
   const Skills({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    List<AssetGenImage> skills = [Assets.skills.cSSLogo];
+  ConsumerState<Skills> createState() => _SkillsState();
+}
 
+class _SkillsState extends ConsumerState<Skills> {
+  final List<String> imagePaths = [
+    'assets/skills/CSS-Logo.png',
+    'assets/skills/dart.png',
+    'assets/skills/flutter-logo.png',
+    'assets/skills/hibernate2.png',
+    'assets/skills/HTML.png',
+    'assets/skills/J2EE.png',
+    'assets/skills/Java-Logo.png',
+    'assets/skills/js.png',
+    'assets/skills/MongoDB.png',
+    'assets/skills/MySQl.jpg',
+    'assets/skills/NET_Core_Logo.png',
+    'assets/skills/SQL.png',
+    'assets/skills/jQuery.png',
+  ];
+
+  List<Color> cardColors = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _generateCardColors();
+  }
+
+  Future<void> _generateCardColors() async {
+    List<Color> colors = [];
+    for (String imagePath in imagePaths) {
+      final PaletteGenerator paletteGenerator =
+          await PaletteGenerator.fromImageProvider(
+        AssetImage(imagePath),
+      );
+      // Use the dominant color or a fallback if no dominant color is found
+      colors.add(paletteGenerator.dominantColor?.color ?? Colors.grey);
+    }
+    setState(() {
+      cardColors = colors;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return GridView.builder(
@@ -21,8 +62,13 @@ class Skills extends ConsumerWidget {
         childAspectRatio: 1.6,
         crossAxisSpacing: 20,
       ),
-      itemCount: skills.length,
+      itemCount: imagePaths.length,
       itemBuilder: (context, index) {
+        if (cardColors.isEmpty) {
+          // If colors are still being fetched, show a loading spinner or placeholder color
+          return const Center(child: CircularProgressIndicator());
+        }
+
         return Card(
           elevation: 4,
           shape: RoundedRectangleBorder(
@@ -37,15 +83,12 @@ class Skills extends ConsumerWidget {
             curve: Curves.easeInOut,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              gradient: LinearGradient(
-                colors: isDarkMode
-                    ? [Colors.blueGrey.shade700, Colors.black]
-                    : [Colors.grey.shade200, Colors.grey.shade300],
-              ),
+              color:
+                  cardColors[index], // Apply dominant color to the background
             ),
             child: Container(
-              width: 500,
-              // child: Image.asset(skills[index]),
+              padding: const EdgeInsets.all(8),
+              child: Image.asset(imagePaths[index]),
             ),
           ),
         );

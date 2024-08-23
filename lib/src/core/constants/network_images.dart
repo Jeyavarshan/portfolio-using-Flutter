@@ -21,4 +21,11 @@ class SkillImages {
       "https://img.icons8.com/?size=100&id=ywH6EJgZ7sm5&format=png&color=000000";
   static const MongoDB =
       "https://img.icons8.com/?size=100&id=8rKdRqZFLurS&format=png&color=000000";
+  static const git =
+      "https://img.icons8.com/?size=100&id=20906&format=png&color=000000";
+  static const SVn =
+      "https://www.logolynx.com/images/logolynx/04/045a3f0ea18dc9fc0abfc4ce1f3db6d0.png";
+  static const Riverpod = "";
+  static const flutterFlow =
+      "https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_fdd66f2658ccba01e8717fedb2db4222/flutterflow.png";
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:glitch_text/glitch_text.dart';
 
+import '../../../common_widgets/typing_animation.dart';
+
 class Homesection extends ConsumerWidget {
   const Homesection({super.key});
 
@@ -26,6 +28,30 @@ class Homesection extends ConsumerWidget {
                   wordSpacing: 1,
                   letterSpacing: 1,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "I am a ",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    TypewriterText(
+                      texts: const [
+                        "Flutter developer",
+                        "Mobile Application Developer",
+                        "Software Developer"
+                      ],
+                      textStyle: TextStyle(
+                        fontSize: 25,
+                        fontFamily: "Times New Roman",
+                        color: Theme.of(context).colorScheme.onSurface,
+                        letterSpacing: 1,
+                        wordSpacing: 1,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                )
               ],
             ),
           ),
@@ -46,3 +72,4 @@ class Homesection extends ConsumerWidget {
     );
   }
 }
+

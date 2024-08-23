@@ -1,7 +1,10 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../widgets/bullet_widget.dart';
+import '../../../common_widgets/bullet_widget.dart';
 
 class AboutUsSection extends ConsumerWidget {
   const AboutUsSection({super.key});
@@ -14,10 +17,37 @@ class AboutUsSection extends ConsumerWidget {
         appBar: AppBar(
           bottom: TabBar(
             indicatorColor: Theme.of(context).colorScheme.onSurface,
-            tabs: const [
-              Tab(text: 'About Me'),
-              Tab(text: 'Technology used as a Flutter Developer'),
-              Tab(text: 'Experience'),
+            tabs: [
+              Tab(
+                child: EncryptedText(
+                  text: 'About Me',
+                  textStyle: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
+              ),
+              Tab(
+                child: EncryptedText(
+                  text: 'Technology used as a Flutter Developer',
+                  textStyle: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
+              ),
+              Tab(
+                child: EncryptedText(
+                  text: 'Experience',
+                  textStyle: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -99,6 +129,78 @@ class AboutUsSection extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Bullet(text, style: const TextStyle(fontSize: 16)),
+    );
+  }
+}
+
+class EncryptedText extends StatefulWidget {
+  final String text;
+  final Duration revealSpeed;
+  final TextStyle? textStyle;
+  final TextAlign textAlign;
+
+  const EncryptedText({
+    super.key,
+    required this.text,
+    this.revealSpeed = const Duration(milliseconds: 100),
+    this.textStyle,
+    this.textAlign = TextAlign.start,
+  });
+
+  @override
+  EncryptedTextState createState() => EncryptedTextState();
+}
+
+class EncryptedTextState extends State<EncryptedText> {
+  String _displayText = "";
+  String _currentText = "";
+  int _charIndex = 0;
+  final _random = Random();
+
+  @override
+  void initState() {
+    super.initState();
+    _startEncryptionEffect();
+  }
+
+  void _startEncryptionEffect() {
+    Timer.periodic(widget.revealSpeed, (timer) {
+      setState(() {
+        if (_charIndex < widget.text.length) {
+          _currentText = widget.text;
+          _displayText = _generateEncryptedText();
+          _charIndex++;
+        } else {
+          _displayText = widget.text; // Show the final text
+          timer.cancel();
+        }
+      });
+    });
+  }
+
+  String _generateEncryptedText() {
+    String encryptedText = "";
+    for (int i = 0; i < _currentText.length; i++) {
+      if (i < _charIndex) {
+        encryptedText += _currentText[i];
+      } else {
+        encryptedText += _getRandomCharacter();
+      }
+    }
+    return encryptedText;
+  }
+
+  String _getRandomCharacter() {
+    const characters = 'AWX!@#%^&*()vwxyz0123456789';
+    return characters[_random.nextInt(characters.length)];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      _displayText,
+      style: widget.textStyle,
+      textAlign: widget.textAlign,
     );
   }
 }

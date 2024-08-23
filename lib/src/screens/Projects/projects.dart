@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:port/src/screens/Projects/sections/Intro_section.dart';
-import 'package:port/src/screens/Projects/sections/projects_Sections.dart';
 import 'package:port/src/services/app_theme.dart';
+
+import 'sections/projects_sections.dart';
 
 class Projects extends ConsumerWidget {
   const Projects({super.key});

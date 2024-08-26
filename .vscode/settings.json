@@ -1,3 +1,8 @@
 {
-  "cSpell.words": ["Homesection", "Jeyavarshan"]
+  "cSpell.words": [
+    "Homesection",
+    "Jeyavarshan"
+  ],
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true
 }

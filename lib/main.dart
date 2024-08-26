@@ -24,11 +24,13 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       title: 'portofolio',
       theme: ThemeData(
-        brightness: appThemeMode == AppThemeMode.light
-            ? Brightness.light
-            : Brightness.dark,
-        useMaterial3: true,
-      ),
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.indigo,
+            brightness: appThemeMode == AppThemeMode.light
+                ? Brightness.light
+                : Brightness.dark,
+          )),
       routerConfig: route,
     );
   }

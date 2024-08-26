@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:motion/motion.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../common_widgets/bullet_widget.dart';
@@ -120,7 +121,11 @@ class AboutUsSection extends ConsumerWidget {
       padding: EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [],
+        children: [
+          Center(
+              child:
+                  SizedBox(width: 500, height: 400, child: MotionDemoPage())),
+        ],
       ),
     );
   }
@@ -202,5 +207,77 @@ class EncryptedTextState extends State<EncryptedText> {
       style: widget.textStyle,
       textAlign: widget.textAlign,
     );
+  }
+}
+
+class MotionDemoPage extends StatefulWidget {
+  const MotionDemoPage({super.key});
+
+  @override
+  State<MotionDemoPage> createState() => _MotionDemoPageState();
+}
+
+class _MotionDemoPageState extends State<MotionDemoPage> {
+  @override
+  Widget build(BuildContext context) {
+    const cardBorderRadius = BorderRadius.all(Radius.circular(25));
+
+    if (Motion.instance.isPermissionRequired &&
+        !Motion.instance.isPermissionGranted) {
+      showPermissionRequestDialog(
+        context,
+        onDone: () {
+          setState(() {});
+        },
+      );
+    }
+
+    return Scaffold(
+        body: Stack(children: [
+      Center(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+        Motion.elevated(
+          elevation: 70,
+          borderRadius: cardBorderRadius,
+          child: Card(
+            child: Container(
+              width: 500,
+              height: 380,
+              decoration: const BoxDecoration(borderRadius: cardBorderRadius),
+              child: Motion.elevated(
+                  elevation: 100,
+                  shadow: false,
+                  child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: const Text("Menthee Technologies"))),
+            ),
+          ),
+        ),
+      ]))
+    ]));
+  }
+
+  Future<void> showPermissionRequestDialog(BuildContext context,
+      {required Function() onDone}) async {
+    return showDialog<void>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+              title: const Text('Permission required'),
+              content: const Text(
+                  'On iOS 13+, you need to grant access to the gyroscope. A permission will be requested to proceed.'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'Cancel'),
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Motion.instance.requestPermission();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            ));
   }
 }

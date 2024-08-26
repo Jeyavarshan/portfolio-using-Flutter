@@ -36,11 +36,14 @@ class AnimatedSkillsState extends State<AnimatedSkills> {
         crossAxisCount: 5,
         mainAxisSpacing: 20,
         crossAxisSpacing: 20,
-        childAspectRatio: 9 / 5,
+        childAspectRatio: 9 / 6,
       ),
       itemCount: imageUrls.length,
       itemBuilder: (context, index) {
-        return HoverCard(imageUrl: imageUrls[index]);
+        return Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: HoverCard(imageUrl: imageUrls[index]),
+        );
       },
     );
   }

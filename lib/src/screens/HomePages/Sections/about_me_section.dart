@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 import 'package:motion/motion.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -117,14 +118,15 @@ class AboutUsSection extends ConsumerWidget {
   }
 
   Widget _buildExperienceTab() {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-              child:
-                  SizedBox(width: 500, height: 400, child: MotionDemoPage())),
+          // Center(
+          //     child:
+          //         SizedBox(width: 500, height: 400, child: MotionDemoPage())),
+          Container(width: 500, height: 500, child: CodeEditor())
         ],
       ),
     );
@@ -279,5 +281,95 @@ class _MotionDemoPageState extends State<MotionDemoPage> {
                 ),
               ],
             ));
+  }
+}
+
+class CodeEditor extends StatefulWidget {
+  const CodeEditor({super.key});
+
+  @override
+  State<CodeEditor> createState() => _CodeEditorState();
+}
+
+class _CodeEditorState extends State<CodeEditor> {
+  static const String code = r"""
+import 'dart:math' as math;
+
+// Coffee class is the best!
+class Coffee {
+  late int _temperature;
+
+  void heat() => _temperature = 100;
+  void chill() => _temperature = -5;
+
+  void sip() {
+    final bool isTooHot = math.max(37, _temperature) > 37;
+    if (isTooHot)
+      print("myyy liiips!");
+    else
+      print("mmmmm refreshing!");
+  }
+
+  int? get temperature => temperature;
+}
+void main() {
+  var coffee = Coffee();
+  coffee.heat();
+  coffee.sip();
+  coffee.chill();
+  coffee.sip();
+}
+/* And there
+        you have it */""";
+
+  static final syntaxViews = {
+    "MonokaiSublime": SyntaxView(
+        code: code,
+        syntax: Syntax.DART,
+        syntaxTheme: SyntaxTheme.monokaiSublime(),
+        fontSize: 12.0,
+        withZoom: true,
+        withLinesCount: true,
+        expanded: true,
+        selectable: true)
+  };
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        padding: const EdgeInsets.all(8),
+        itemCount: syntaxViews.length,
+        itemBuilder: (BuildContext context, int index) {
+          String themeName = syntaxViews.keys.elementAt(index);
+          SyntaxView syntaxView = syntaxViews.values.elementAt(index);
+          return Card(
+            margin: const EdgeInsets.all(10),
+            elevation: 6.0,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.brush_sharp),
+                      Text(
+                        themeName,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      const Icon(Icons.brush_sharp),
+                    ],
+                  ),
+                ),
+                const Divider(),
+                if (syntaxView.expanded)
+                  Container(
+                      height: MediaQuery.of(context).size.height / 2.5,
+                      child: syntaxView)
+                else
+                  syntaxView
+              ],
+            ),
+          );
+        });
   }
 }

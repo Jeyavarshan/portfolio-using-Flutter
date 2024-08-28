@@ -26,6 +26,21 @@ class AnimatedSkillsState extends State<AnimatedSkills> {
     SkillImages.SVn,
     SkillImages.flutterFlow,
   ];
+  final List<String> skillName = [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "JAVA",
+    "JQuery",
+    "Flutter",
+    "MongoDB",
+    "MySQL",
+    "SQL",
+    "Dart",
+    "GIT",
+    "SVN",
+    "FlutterFlow"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +57,10 @@ class AnimatedSkillsState extends State<AnimatedSkills> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.all(20.0),
-          child: HoverCard(imageUrl: imageUrls[index]),
+          child: HoverCard(
+            imageUrl: imageUrls[index],
+            skillNames: skillName[index],
+          ),
         );
       },
     );

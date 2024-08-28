@@ -24,7 +24,7 @@ class SkillImages {
   static const git =
       "https://img.icons8.com/?size=100&id=20906&format=png&color=000000";
   static const SVn =
-      "https://www.logolynx.com/images/logolynx/04/045a3f0ea18dc9fc0abfc4ce1f3db6d0.png";
+      "https://www.google.com/url?sa=i&url=https%3A%2F%2Ftortoisesvn.net%2F&psig=AOvVaw0XwhQacFmUk1Zyq7TJ8_p_&ust=1724923414892000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCLDslc6ul4gDFQAAAAAdAAAAABAS";
   static const Riverpod = "";
   static const flutterFlow =
       "https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_fdd66f2658ccba01e8717fedb2db4222/flutterflow.png";

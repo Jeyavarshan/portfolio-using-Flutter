@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 class HoverCard extends StatefulWidget {
   final String imageUrl;
+  final String skillNames;
 
-  const HoverCard({super.key, required this.imageUrl});
+  const HoverCard(
+      {super.key, required this.imageUrl, required this.skillNames});
 
   @override
   HoverCardState createState() => HoverCardState();
@@ -56,15 +59,19 @@ class HoverCardState extends State<HoverCard>
         decoration: BoxDecoration(
           border: Border(
             top: BorderSide(
+              color: Theme.of(context).colorScheme.surface,
               width: _isHovered ? _animation.value * 3 : 0,
             ),
             bottom: BorderSide(
+              color: Theme.of(context).colorScheme.surface,
               width: _isHovered ? _animation.value * 3 : 0,
             ),
             left: BorderSide(
+              color: Theme.of(context).colorScheme.surface,
               width: _isHovered ? _animation.value * 3 : 0,
             ),
             right: BorderSide(
+              color: Theme.of(context).colorScheme.surface,
               width: _isHovered ? _animation.value * 3 : 0,
             ),
           ),
@@ -79,6 +86,8 @@ class HoverCardState extends State<HoverCard>
             ),
             ClipRRect(
               child: Image.network(
+                width: 100,
+                height: 100,
                 alignment: Alignment.center,
                 widget.imageUrl,
                 fit: BoxFit.contain,
@@ -102,6 +111,12 @@ class HoverCardState extends State<HoverCard>
                 },
               ),
             ),
+            Container(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  widget.skillNames,
+                ))
           ],
         ),
       ),

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:slimy_card_plus/slimy_card.dart';
 
 class Certification extends StatefulWidget {
   const Certification({super.key});
@@ -11,51 +12,105 @@ class Certification extends StatefulWidget {
 }
 
 class _CertificationState extends State<Certification> {
-  final PageController _pageController = PageController(
-    viewportFraction: 0.9,
-  );
-  int _pageIndex = 0;
-  int imagesLength = 0;
-  @override
-  void initState() {
-    _autoSlide();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    _pageController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: 500,
-          child: const Center(child: Text("Certifications")),
-        ),
-      ],
+    return Scaffold(
+      body: StreamBuilder(
+        initialData: false,
+        stream: slimyCard.stream,
+        builder: ((BuildContext context, snapshot) {
+          return ListView(
+            scrollDirection: Axis.horizontal,
+            children: <Widget>[
+              const SizedBox(width: 100),
+              SlimyCard(
+                width: 700,
+                topCardHeight: 400,
+                color: Colors.black,
+                topCardWidget: Image.asset(
+                  fit: BoxFit.fill,
+                  "assets/certificates/IIT-Madras.jpg",
+                ),
+                bottomCardWidget: bottomCardWidget(),
+              ),
+              const SizedBox(width: 100),
+              SlimyCard(
+                width: 700,
+                topCardHeight: 400,
+                color: Colors.black,
+                topCardWidget: Image.asset(
+                  fit: BoxFit.fill,
+                  "assets/certificates/IIT-Madras.jpg",
+                ),
+                bottomCardWidget: bottomCardWidget(),
+              ),
+              const SizedBox(width: 100),
+              SlimyCard(
+                width: 700,
+                topCardHeight: 400,
+                color: Colors.black,
+                topCardWidget: Image.asset(
+                  fit: BoxFit.fill,
+                  "assets/certificates/IIT-Madras.jpg",
+                ),
+                bottomCardWidget: bottomCardWidget(),
+              ),
+              const SizedBox(width: 100),
+            ],
+          );
+        }),
+      ),
     );
   }
+}
 
-  Timer? _timer;
-  void _autoSlide() {
-    _timer?.cancel();
-    if (imagesLength > 1) {
-      _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
-        setState(() {
-          _pageIndex = (_pageIndex + 1) % imagesLength;
-          _pageController.animateToPage(
-            _pageIndex,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeIn,
-          );
-        });
-      });
-    }
-  }
+Widget topCardWidget(String imagePath) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      Container(
+        height: 200,
+        width: 500,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+          image: DecorationImage(image: AssetImage(imagePath)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 20,
+              spreadRadius: 1,
+            ),
+          ],
+        ),
+      ),
+      const SizedBox(height: 15),
+      const Text(
+        'The Rock',
+        style: TextStyle(color: Colors.white, fontSize: 20),
+      ),
+      const SizedBox(height: 15),
+      Text(
+        'He asks, what your name is. But!',
+        style: TextStyle(
+            color: Colors.white.withOpacity(0.8),
+            fontSize: 12,
+            fontWeight: FontWeight.w500),
+      ),
+      const SizedBox(height: 10),
+    ],
+  );
+}
+
+// This widget will be passed as Bottom Card's Widget.
+Widget bottomCardWidget() {
+  return const Text(
+    'It doesn\'t matter \nwhat your name is.',
+    style: TextStyle(
+      color: Colors.white,
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+    ),
+    textAlign: TextAlign.center,
+  );
 }

@@ -25,6 +25,9 @@ class AnimatedSkillsState extends State<AnimatedSkills> {
     SkillImages.git,
     SkillImages.SVn,
     SkillImages.flutterFlow,
+    SkillImages.Riverpod,
+    SkillImages.hibernate,
+    SkillImages.j2EE,
   ];
   final List<String> skillName = [
     "HTML",
@@ -39,7 +42,10 @@ class AnimatedSkillsState extends State<AnimatedSkills> {
     "Dart",
     "GIT",
     "SVN",
-    "FlutterFlow"
+    "FlutterFlow",
+    "Riverpod",
+    "Hibernate",
+    "J2EE"
   ];
 
   @override
@@ -48,11 +54,10 @@ class AnimatedSkillsState extends State<AnimatedSkills> {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 5,
-        mainAxisSpacing: 20,
-        crossAxisSpacing: 20,
-        childAspectRatio: 9 / 6,
-      ),
+          crossAxisCount: 7,
+          mainAxisSpacing: 20,
+          crossAxisSpacing: 20,
+          childAspectRatio: 0.7 / 0.5),
       itemCount: imageUrls.length,
       itemBuilder: (context, index) {
         return Padding(

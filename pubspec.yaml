@@ -21,9 +21,8 @@ dependencies:
   motion: ^2.0.0
   url_strategy: ^0.2.0
   flutter_syntax_view: ^4.1.0
-  lottie: ^3.1.2
-  widget_and_text_animator: ^1.1.5
-  flutter_gl: ^0.0.21
+  stacked_card_carousel: ^0.0.4
+  slimy_card_plus: ^1.0.5
 
 dev_dependencies:
   flutter_test:

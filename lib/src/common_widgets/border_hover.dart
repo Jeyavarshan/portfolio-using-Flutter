@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 class HoverCard extends StatefulWidget {
   final String imageUrl;
@@ -112,7 +111,7 @@ class HoverCardState extends State<HoverCard>
               ),
             ),
             Container(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: 5),
                 alignment: Alignment.bottomCenter,
                 child: Text(
                   widget.skillNames,

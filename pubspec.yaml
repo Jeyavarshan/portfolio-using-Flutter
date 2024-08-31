@@ -22,7 +22,7 @@ dependencies:
   url_strategy: ^0.2.0
   flutter_syntax_view: ^4.1.0
   stacked_card_carousel: ^0.0.4
-  slimy_card_plus: ^1.0.5
+  flutter_animated_icons: ^1.0.0
 
 dev_dependencies:
   flutter_test:

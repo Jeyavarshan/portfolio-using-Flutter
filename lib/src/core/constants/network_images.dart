@@ -18,9 +18,9 @@ class SkillImages {
   static const Jquery =
       "https://img.icons8.com/?size=100&id=40253&format=png&color=0A489A";
   static const MySQL =
-      "https://e7.pngegg.com/pngimages/354/683/png-clipart-logo-mysql-database-phpmyadmin-oracle-sql-logo-blue-text.png";
+      "https://img.icons8.com/?size=100&id=UFXRpPFebwa2&format=png&color=000000";
   static const SQL =
-      "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/sql-server-icon.png";
+      "https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-sql-computer-programming-flaticons-lineal-color-flat-icons.png";
   static const MongoDB =
       "https://img.icons8.com/?size=100&id=8rKdRqZFLurS&format=png&color=000000";
   static const git =

@@ -13,7 +13,7 @@ class HoverCard extends StatefulWidget {
 
 class HoverCardState extends State<HoverCard>
     with SingleTickerProviderStateMixin {
-  bool _isHovered = false;
+  final bool _isHovered = false;
   late AnimationController _controller;
   late Animation<double> _animation;
 

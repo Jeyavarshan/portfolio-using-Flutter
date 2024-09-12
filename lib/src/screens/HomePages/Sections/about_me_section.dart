@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 import 'package:motion/motion.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rive/rive.dart';
 
 import '../../../common_widgets/bullet_widget.dart';
 
@@ -124,15 +124,13 @@ class AboutUsSection extends ConsumerWidget {
         alignment: Alignment.topCenter,
         width: 1000,
         height: 500,
-        child: Column(
+        child: const Column(
           children: [
             // Center(
             //     child:
             //         SizedBox(width: 500, height: 400, child: MotionDemoPage())),
-            Container(
-                width: 1000,
-                height: 500,
-                child: const SingleCompanyExperience()),
+            SizedBox(
+                width: 2000, height: 500, child: SingleCompanyExperience()),
           ],
         ),
       ),
@@ -369,7 +367,7 @@ void main() {
                 ),
                 const Divider(),
                 if (syntaxView.expanded)
-                  Container(
+                  SizedBox(
                       height: MediaQuery.of(context).size.height / 2.5,
                       child: syntaxView)
                 else
@@ -381,137 +379,175 @@ void main() {
   }
 }
 
-class SingleCompanyExperience extends StatelessWidget {
+class SingleCompanyExperience extends StatefulWidget {
   const SingleCompanyExperience({super.key});
 
   @override
+  State<SingleCompanyExperience> createState() =>
+      _SingleCompanyExperienceState();
+}
+
+class _SingleCompanyExperienceState extends State<SingleCompanyExperience> {
+  late RiveAnimationController<dynamic> _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = OneShotAnimation(
+      'BB',
+      autoplay: false,
+    );
+  }
+
+  void _triggerAnimation() {
+    setState(() {
+      _controller.isActive = true;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: [
-          const Spacer(),
-          Container(
-            padding: const EdgeInsets.all(20.0),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
-              borderRadius: BorderRadius.circular(15),
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: _triggerAnimation,
+          child: Positioned.fill(
+            child: RiveAnimation.asset(
+              'assets/rive/solo_pixel_art_testing.riv',
+              fit: BoxFit.fill,
+              animations: const ['AA', 'SS'],
+              controllers: [_controller],
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+          ),
+        ),
+        Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Spacer(),
+              Container(
+                padding: const EdgeInsets.all(20.0),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.business,
-                        color: Theme.of(context).colorScheme.primary, size: 40),
-                    const SizedBox(width: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
                       children: [
-                        Text(
-                          'MenThee Technologies',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
+                        Icon(
+                          Icons.business,
+                          color: Theme.of(context).colorScheme.primary,
+                          size: 40,
                         ),
-                        const Text(
-                          'Software Engineer',
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
+                        const SizedBox(width: 20),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'MenThee Technologies',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                            const Text(
+                              'Software Engineer',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                            const Text(
+                              'April 2023 - Present',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
                         ),
-                        const Text(
-                          'April 2023 - Present',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      'Achievements:',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      '• Led a team of 10 developers to deliver the flagship project ahead of schedule.',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    const Text(
+                      '• Improved application performance by 30% through optimization techniques.',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    const Text(
+                      '• Spearheaded the migration of the tech stack to modern frameworks.',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      'Technologies Used:',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Wrap(
+                      spacing: 10,
+                      runSpacing: 10,
+                      children: [
+                        Chip(
+                          label: const Text('Flutter'),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.inversePrimary,
+                        ),
+                        Chip(
+                          label: const Text('Dart'),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.inversePrimary,
+                        ),
+                        Chip(
+                          label: const Text('RiverPod'),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.inversePrimary,
+                        ),
+                        Chip(
+                          label: const Text('ASP .NET'),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.inversePrimary,
+                        ),
+                        Chip(
+                          label: const Text('SQL'),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.inversePrimary,
                         ),
                       ],
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
-                Text(
-                  'Achievements:',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  '• Led a team of 10 developers to deliver the flagship project ahead of schedule.',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                const Text(
-                  '• Improved application performance by 30% through optimization techniques.',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                const Text(
-                  '• Spearheaded the migration of the tech stack to modern frameworks.',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'Technologies Used:',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: [
-                    Chip(
-                      label: const Text('Flutter'),
-                      backgroundColor:
-                          Theme.of(context).colorScheme.inversePrimary,
-                    ),
-                    Chip(
-                      label: const Text('Dart'),
-                      backgroundColor:
-                          Theme.of(context).colorScheme.inversePrimary,
-                    ),
-                    Chip(
-                      label: const Text('RiverPod'),
-                      backgroundColor:
-                          Theme.of(context).colorScheme.inversePrimary,
-                    ),
-                    Chip(
-                      label: const Text('ASP .NET'),
-                      backgroundColor:
-                          Theme.of(context).colorScheme.inversePrimary,
-                    ),
-                    Chip(
-                      label: const Text('SQL'),
-                      backgroundColor:
-                          Theme.of(context).colorScheme.inversePrimary,
-                    ),
-                    // Chip(
-                    //   label: const Text('Kubernetes'),
-                    //   backgroundColor: Colors.teal[50],
-                    // ),
-                  ],
-                ),
-              ],
-            ),
+              ),
+              const Spacer(),
+            ],
           ),
-          const Spacer(),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

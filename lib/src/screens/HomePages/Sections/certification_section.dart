@@ -192,7 +192,7 @@ class NeonBorderImageDemoState extends State<NeonBorderImageDemo>
             AnimatedContainer(
               width: 710,
               height: 500,
-              duration: Duration(seconds: 1),
+              duration: const Duration(seconds: 1),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: [

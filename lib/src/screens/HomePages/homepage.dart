@@ -2,17 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:port/src/screens/HomePages/Sections/about_me_section.dart';
 import 'package:port/src/screens/HomePages/Sections/certification_section.dart';
+import 'package:port/src/screens/HomePages/Sections/footer.dart';
 
 import 'package:port/src/screens/HomePages/Sections/home_Section.dart';
 import 'package:port/src/screens/HomePages/Sections/skills_section.dart';
 import 'package:port/src/screens/Projects/projects.dart';
 import 'package:port/src/services/app_theme.dart';
 
-class Homepage extends ConsumerWidget {
+class Homepage extends ConsumerStatefulWidget {
   const Homepage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends ConsumerState<Homepage> {
+  @override
+  Widget build(BuildContext context) {
     Widget buildThemeToggle() {
       final isDarkMode = ref.watch(appThemeModeProvider) == AppThemeMode.dark;
 
@@ -44,7 +50,8 @@ class Homepage extends ConsumerWidget {
             Homesection(),
             SizedBox(width: 1920, height: 700, child: AboutUsSection()),
             AnimatedSkills(),
-            SizedBox(width: 1920, height: 700, child: CertificationSection())
+            SizedBox(width: 1920, height: 700, child: CertificationSection()),
+            SizedBox(width: 1920, height: 510, child: ProfessionalFooter()),
           ],
         ),
       ),

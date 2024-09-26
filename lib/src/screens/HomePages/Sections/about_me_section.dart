@@ -183,7 +183,7 @@ class EncryptedTextState extends State<EncryptedText> {
           _displayText = _generateEncryptedText();
           _charIndex++;
         } else {
-          _displayText = widget.text; // Show the final text
+          _displayText = widget.text;
           timer.cancel();
         }
       });
@@ -394,7 +394,7 @@ class _SingleCompanyExperienceState extends State<SingleCompanyExperience> {
   void initState() {
     super.initState();
     _controller = OneShotAnimation(
-      'BB',
+      'lookUp',
       autoplay: false,
     );
   }
@@ -411,140 +411,132 @@ class _SingleCompanyExperienceState extends State<SingleCompanyExperience> {
       children: [
         GestureDetector(
           onTap: _triggerAnimation,
-          child: Positioned.fill(
-            child: RiveAnimation.asset(
-              'assets/rive/solo_pixel_art_testing.riv',
-              fit: BoxFit.fill,
-              animations: const ['AA', 'SS'],
-              controllers: [_controller],
-            ),
+          child: RiveAnimation.asset(
+            'rive/flutter_puzzle_hack_project.riv',
+            fit: BoxFit.cover,
+            animations: const ['Idle', 'birb'],
+            controllers: [_controller],
           ),
         ),
         Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(),
-              Container(
-                padding: const EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          child: Container(
+            width: 500,
+            padding: const EdgeInsets.all(20.0),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   children: [
-                    Row(
+                    Icon(
+                      Icons.business,
+                      color: Theme.of(context).colorScheme.primary,
+                      size: 40,
+                    ),
+                    const SizedBox(width: 20),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.business,
-                          color: Theme.of(context).colorScheme.primary,
-                          size: 40,
+                        Text(
+                          'MenThee Technologies',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                         ),
-                        const SizedBox(width: 20),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'MenThee Technologies',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                            ),
-                            const Text(
-                              'Software Engineer',
-                              style: TextStyle(
-                                fontSize: 18,
-                              ),
-                            ),
-                            const Text(
-                              'April 2023 - Present',
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
+                        const Text(
+                          'Software Engineer',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      'Achievements:',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      '• Led a team of 10 developers to deliver the flagship project ahead of schedule.',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    const Text(
-                      '• Improved application performance by 30% through optimization techniques.',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    const Text(
-                      '• Spearheaded the migration of the tech stack to modern frameworks.',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      'Technologies Used:',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Wrap(
-                      spacing: 10,
-                      runSpacing: 10,
-                      children: [
-                        Chip(
-                          label: const Text('Flutter'),
-                          backgroundColor:
-                              Theme.of(context).colorScheme.inversePrimary,
-                        ),
-                        Chip(
-                          label: const Text('Dart'),
-                          backgroundColor:
-                              Theme.of(context).colorScheme.inversePrimary,
-                        ),
-                        Chip(
-                          label: const Text('RiverPod'),
-                          backgroundColor:
-                              Theme.of(context).colorScheme.inversePrimary,
-                        ),
-                        Chip(
-                          label: const Text('ASP .NET'),
-                          backgroundColor:
-                              Theme.of(context).colorScheme.inversePrimary,
-                        ),
-                        Chip(
-                          label: const Text('SQL'),
-                          backgroundColor:
-                              Theme.of(context).colorScheme.inversePrimary,
+                        const Text(
+                          'April 2023 - Present',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
                         ),
                       ],
                     ),
                   ],
                 ),
-              ),
-              const Spacer(),
-            ],
+                const SizedBox(height: 20),
+                Text(
+                  'Achievements:',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  '• Led a team of 10 developers to deliver the flagship project ahead of schedule.',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                const Text(
+                  '• Improved application performance by 30% through optimization techniques.',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                const Text(
+                  '• Spearheaded the migration of the tech stack to modern frameworks.',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  'Technologies Used:',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: [
+                    Chip(
+                      label: const Text('Flutter'),
+                      backgroundColor:
+                          Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                    Chip(
+                      label: const Text('Dart'),
+                      backgroundColor:
+                          Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                    Chip(
+                      label: const Text('RiverPod'),
+                      backgroundColor:
+                          Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                    Chip(
+                      label: const Text('ASP .NET'),
+                      backgroundColor:
+                          Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                    Chip(
+                      label: const Text('SQL'),
+                      backgroundColor:
+                          Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ],

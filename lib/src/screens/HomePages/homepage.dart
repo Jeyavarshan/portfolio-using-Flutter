@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:port/src/core/utils/responsive_widget.dart';
 import 'package:port/src/screens/HomePages/Sections/about_me_section.dart';
 import 'package:port/src/screens/HomePages/Sections/certification_section.dart';
 import 'package:port/src/screens/HomePages/Sections/footer.dart';
@@ -45,14 +46,25 @@ class _HomepageState extends ConsumerState<Homepage> {
         ],
       ),
       body: const SingleChildScrollView(
-        child: Column(
-          children: [
-            Homesection(),
-            SizedBox(width: 1920, height: 700, child: AboutUsSection()),
-            AnimatedSkills(),
-            SizedBox(width: 1920, height: 700, child: CertificationSection()),
-            SizedBox(width: 1920, height: 510, child: ProfessionalFooter()),
-          ],
+        child: ResponsiveWidget(
+          desktop: Column(
+            children: [
+              Homesection(),
+              SizedBox(width: 1920, height: 700, child: AboutUsSection()),
+              AnimatedSkills(),
+              SizedBox(width: 1920, height: 700, child: CertificationSection()),
+              SizedBox(width: 1920, height: 550, child: ProfessionalFooter()),
+            ],
+          ),
+          mobile: Column(
+            children: [
+              Homesection(),
+              SizedBox(width: 1920, height: 700, child: AboutUsSection()),
+              AnimatedSkills(),
+              SizedBox(width: 1920, height: 700, child: CertificationSection()),
+              SizedBox(width: 1920, height: 600, child: ProfessionalFooter()),
+            ],
+          ),
         ),
       ),
     );

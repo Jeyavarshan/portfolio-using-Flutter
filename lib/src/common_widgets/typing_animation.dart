@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-
-
 class TypewriterText extends StatefulWidget {
   final List<String> texts;
   final Duration typingSpeed;
@@ -31,6 +29,8 @@ class TypewriterTextState extends State<TypewriterText> {
   int _charIndex = 0;
   bool _isDeleting = false;
   bool _showCursor = true;
+  Timer? _typingTimer;
+  Timer? _cursorBlinkTimer;
 
   @override
   void initState() {
@@ -39,8 +39,16 @@ class TypewriterTextState extends State<TypewriterText> {
     _startCursorBlink();
   }
 
+  @override
+  void dispose() {
+    _typingTimer?.cancel();
+    _cursorBlinkTimer?.cancel();
+    super.dispose();
+  }
+
   void _startTyping() {
-    Timer.periodic(widget.typingSpeed, (timer) {
+    _typingTimer = Timer.periodic(widget.typingSpeed, (timer) {
+      if (!mounted) return;
       setState(() {
         if (_isDeleting) {
           if (_charIndex > 0) {
@@ -65,7 +73,8 @@ class TypewriterTextState extends State<TypewriterText> {
   }
 
   void _startCursorBlink() {
-    Timer.periodic(widget.cursorBlinkDuration, (timer) {
+    _cursorBlinkTimer = Timer.periodic(widget.cursorBlinkDuration, (timer) {
+      if (!mounted) return;
       setState(() {
         _showCursor = !_showCursor;
       });
@@ -75,14 +84,16 @@ class TypewriterTextState extends State<TypewriterText> {
   void _delayTyping(Timer timer) {
     timer.cancel();
     Future.delayed(widget.pauseDuration, () {
-      _startTyping();
+      if (mounted) {
+        _startTyping();
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      '$_displayText${_showCursor ? "|" : ""}', // Append cursor at the end
+      '$_displayText${_showCursor ? "|" : ""}',
       style: widget.textStyle,
       textAlign: widget.textAlign,
     );

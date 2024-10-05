@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:port/src/core/utils/responsive_widget.dart';
 
 import '../../../common_widgets/border_hover.dart';
 import '../../../core/constants/network_images.dart';
@@ -50,24 +51,45 @@ class AnimatedSkillsState extends State<AnimatedSkills> {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 7,
-          mainAxisSpacing: 20,
-          crossAxisSpacing: 20,
-          childAspectRatio: 0.7 / 0.5),
-      itemCount: imageUrls.length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: HoverCard(
-            imageUrl: imageUrls[index],
-            skillNames: skillName[index],
-          ),
-        );
-      },
+    return ResponsiveWidget(
+      desktop: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 7,
+            mainAxisSpacing: 20,
+            crossAxisSpacing: 20,
+            childAspectRatio: 0.7 / 0.5),
+        itemCount: imageUrls.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: HoverCard(
+              imageUrl: imageUrls[index],
+              skillNames: skillName[index],
+            ),
+          );
+        },
+      ),
+      mobile: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            mainAxisSpacing: 5,
+            crossAxisSpacing: 5,
+            childAspectRatio: 0.2 / 0.2),
+        itemCount: imageUrls.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: HoverCard(
+              imageUrl: imageUrls[index],
+              skillNames: skillName[index],
+            ),
+          );
+        },
+      ),
     );
   }
 }

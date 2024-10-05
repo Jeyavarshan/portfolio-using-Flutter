@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:port/src/core/assets/assets.gen.dart';
+import 'package:port/src/core/utils/responsive_widget.dart';
 
 class CertificationSection extends StatefulWidget {
   const CertificationSection({super.key});
@@ -12,10 +13,10 @@ class CertificationSection extends StatefulWidget {
 
 class _CertificationSectionState extends State<CertificationSection> {
   List<Widget> wid = [
-    NeonBorderImageDemo(image: Assets.certificates.iITMadras.path),
-    NeonBorderImageDemo(image: Assets.certificates.iITMadras.path),
-    NeonBorderImageDemo(image: Assets.certificates.iITMadras.path),
-    NeonBorderImageDemo(image: Assets.certificates.iITMadras.path),
+    NeonBorderImage(image: Assets.certificates.iITMadras.path),
+    NeonBorderImage(image: Assets.certificates.iITMadras.path),
+    NeonBorderImage(image: Assets.certificates.iITMadras.path),
+    NeonBorderImage(image: Assets.certificates.iITMadras.path),
   ];
   @override
   Widget build(BuildContext context) {
@@ -123,14 +124,14 @@ class _ZoomSliderState extends State<ZoomSlider> {
   }
 }
 
-class NeonBorderImageDemo extends StatefulWidget {
-  const NeonBorderImageDemo({super.key, required this.image});
+class NeonBorderImage extends StatefulWidget {
+  const NeonBorderImage({super.key, required this.image});
   final String image;
   @override
-  NeonBorderImageDemoState createState() => NeonBorderImageDemoState();
+  NeonBorderImageState createState() => NeonBorderImageState();
 }
 
-class NeonBorderImageDemoState extends State<NeonBorderImageDemo>
+class NeonBorderImageState extends State<NeonBorderImage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Color?> _colorAnimation;
@@ -183,30 +184,61 @@ class NeonBorderImageDemoState extends State<NeonBorderImageDemo>
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: Center(
         child: Stack(
           alignment: Alignment.center,
           children: [
-            AnimatedContainer(
-              width: 710,
-              height: 500,
-              duration: const Duration(seconds: 1),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: _colorAnimation.value!.withAlpha(50),
-                    blurRadius: 20,
-                    spreadRadius: 2,
-                  ),
-                  BoxShadow(
-                    color: _colorAnimation.value!,
-                    blurRadius: 40,
-                    spreadRadius: 4,
-                  ),
-                ],
+            ResponsiveWidget(
+              desktop: AnimatedContainer(
+                width: 710,
+                height: 500,
+                duration: const Duration(seconds: 1),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: _colorAnimation.value!.withAlpha(50),
+                      blurRadius: 20,
+                      spreadRadius: 2,
+                    ),
+                    BoxShadow(
+                      color: _colorAnimation.value!,
+                      blurRadius: 40,
+                      spreadRadius: 4,
+                    ),
+                  ],
+                ),
+              ),
+              mobile: AnimatedContainer(
+                width: size > 576
+                    ? 350
+                    : size > 500
+                        ? 300
+                        : 200,
+                height: size > 576
+                    ? 250
+                    : size > 500
+                        ? 200
+                        : 100,
+                duration: const Duration(seconds: 1),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: _colorAnimation.value!.withAlpha(50),
+                      blurRadius: 20,
+                      spreadRadius: 2,
+                    ),
+                    BoxShadow(
+                      color: _colorAnimation.value!,
+                      blurRadius: 40,
+                      spreadRadius: 4,
+                    ),
+                  ],
+                ),
               ),
             ),
             Container(

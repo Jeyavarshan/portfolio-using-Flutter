@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 import 'package:motion/motion.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:port/src/core/utils/responsive_widget.dart';
 import 'package:rive/rive.dart';
 
 import '../../../common_widgets/bullet_widget.dart';
@@ -65,29 +66,56 @@ class AboutUsSection extends ConsumerWidget {
   }
 
   Widget _buildAboutMeTab() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 20),
-          const Text(
-            "I’m Jeyavarshan, a Flutter developer with 1 years of experience specializing in creating cross-platform mobile applications. I have a strong foundation in Dart and am adept at leveraging Flutter’s rich set of widgets to build intuitive and high-performance apps. My expertise also extends to developing APIs using ASP.NET, which complements my skills in building robust and scalable applications. I am experienced with state management solutions like Riverpod, which enables me to create well-structured and maintainable app architectures. Passionate about delivering exceptional user experiences, I continuously explore new technologies and best practices to enhance my development skills",
-            style: TextStyle(fontSize: 16),
-          ),
-          const SizedBox(height: 10),
-          const Text(
-            "I have worked on various production-grade projects, where I design project architecture, structure, and patterns based on specific requirements. I have also led teams, promoting best practices and assisting in project development by suggesting new features and implementations in collaboration with managers.",
-            style: TextStyle(fontSize: 16),
-          ),
-          const SizedBox(height: 20),
-          _buildBulletPoint(
-              'Flutter & Dart: Expert in crafting responsive, high-performance mobile applications.'),
-          _buildBulletPoint(
-              'ASP.NET: Proficient in developing and managing APIs for backend integration.'),
-          _buildBulletPoint(
-              'State Management: Experienced with Riverpod for efficient state management and scalable app architecture.'),
-        ],
+    return ResponsiveWidget(
+      desktop: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20),
+            const Text(
+              "I’m Jeyavarshan, a Flutter developer with 1 years of experience specializing in creating cross-platform mobile applications. I have a strong foundation in Dart and am adept at leveraging Flutter’s rich set of widgets to build intuitive and high-performance apps. My expertise also extends to developing APIs using ASP.NET, which complements my skills in building robust and scalable applications. I am experienced with state management solutions like Riverpod, which enables me to create well-structured and maintainable app architectures. Passionate about delivering exceptional user experiences, I continuously explore new technologies and best practices to enhance my development skills",
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              "I have worked on various production-grade projects, where I design project architecture, structure, and patterns based on specific requirements. I have also led teams, promoting best practices and assisting in project development by suggesting new features and implementations in collaboration with managers.",
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 20),
+            _buildBulletPoint(
+                'Flutter & Dart: Expert in crafting responsive, high-performance mobile applications.'),
+            _buildBulletPoint(
+                'ASP.NET: Proficient in developing and managing APIs for backend integration.'),
+            _buildBulletPoint(
+                'State Management: Experienced with Riverpod for efficient state management and scalable app architecture.'),
+          ],
+        ),
+      ),
+      mobile: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20),
+            const Text(
+              "I’m Jeyavarshan, a Flutter developer with 1 years of experience specializing in creating cross-platform mobile applications. I have a strong foundation in Dart and am adept at leveraging Flutter’s rich set of widgets to build intuitive and high-performance apps. My expertise also extends to developing APIs using ASP.NET, which complements my skills in building robust and scalable applications. I am experienced with state management solutions like Riverpod, which enables me to create well-structured and maintainable app architectures. Passionate about delivering exceptional user experiences, I continuously explore new technologies and best practices to enhance my development skills",
+              style: TextStyle(fontSize: 13),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              "I have worked on various production-grade projects, where I design project architecture, structure, and patterns based on specific requirements. I have also led teams, promoting best practices and assisting in project development by suggesting new features and implementations in collaboration with managers.",
+              style: TextStyle(fontSize: 13),
+            ),
+            const SizedBox(height: 20),
+            _buildBulletPoint(
+                'Flutter & Dart: Expert in crafting responsive, high-performance mobile applications.'),
+            _buildBulletPoint(
+                'ASP.NET: Proficient in developing and managing APIs for backend integration.'),
+            _buildBulletPoint(
+                'State Management: Experienced with Riverpod for efficient state management and scalable app architecture.'),
+          ],
+        ),
       ),
     );
   }
@@ -388,20 +416,37 @@ class SingleCompanyExperience extends StatefulWidget {
 }
 
 class _SingleCompanyExperienceState extends State<SingleCompanyExperience> {
-  late RiveAnimationController<dynamic> _controller;
+  late RiveAnimationController<dynamic> _controller1;
+  late RiveAnimationController<dynamic> _controller2;
 
   @override
   void initState() {
     super.initState();
-    _controller = OneShotAnimation(
+    _controller1 = OneShotAnimation(
       'lookUp',
+      autoplay: false,
+    );
+    _controller2 = OneShotAnimation(
+      'slowDance',
       autoplay: false,
     );
   }
 
-  void _triggerAnimation() {
+  void _triggerAnimation1() {
     setState(() {
-      _controller.isActive = true;
+      _controller1.isActive = true;
+    });
+  }
+
+  void _triggerAnimation2() {
+    setState(() {
+      _controller2.isActive = true;
+    });
+  }
+
+  void _cancelAnimation2() {
+    setState(() {
+      _controller2.isActive = false;
     });
   }
 
@@ -410,12 +455,26 @@ class _SingleCompanyExperienceState extends State<SingleCompanyExperience> {
     return Stack(
       children: [
         GestureDetector(
-          onTap: _triggerAnimation,
+          onTap: _triggerAnimation1,
+          onDoubleTap: _triggerAnimation2,
+          onDoubleTapCancel: _cancelAnimation2,
           child: RiveAnimation.asset(
+            alignment: Alignment.centerLeft,
             'rive/flutter_puzzle_hack_project.riv',
-            fit: BoxFit.cover,
-            animations: const ['Idle', 'birb'],
-            controllers: [_controller],
+            fit: BoxFit.fitHeight,
+            animations: const ['birb', "idle"],
+            controllers: [_controller1, _controller2],
+          ),
+        ),
+        GestureDetector(
+          onTap: _triggerAnimation1,
+          onDoubleTap: _triggerAnimation2,
+          child: RiveAnimation.asset(
+            alignment: Alignment.centerRight,
+            'rive/flutter_puzzle_hack_project.riv',
+            fit: BoxFit.fitHeight,
+            animations: const ['birb', "idle"],
+            controllers: [_controller1, _controller2],
           ),
         ),
         Center(

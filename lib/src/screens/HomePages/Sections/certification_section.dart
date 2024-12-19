@@ -214,15 +214,15 @@ class NeonBorderImageState extends State<NeonBorderImage>
               ),
               mobile: AnimatedContainer(
                 width: size > 576
-                    ? 350
-                    : size > 500
+                    ? 320
+                    : size > 400
                         ? 300
                         : 200,
                 height: size > 576
                     ? 250
                     : size > 500
                         ? 200
-                        : 100,
+                        : 150,
                 duration: const Duration(seconds: 1),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),

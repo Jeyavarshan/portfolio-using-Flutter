@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:port/src/core/utils/responsive_widget.dart';
+import 'package:port/src/route_management/router.dart';
 import 'package:port/src/screens/HomePages/Sections/about_me_section.dart';
 import 'package:port/src/screens/HomePages/Sections/certification_section.dart';
 import 'package:port/src/screens/HomePages/Sections/footer.dart';
 
 import 'package:port/src/screens/HomePages/Sections/home_Section.dart';
 import 'package:port/src/screens/HomePages/Sections/skills_section.dart';
-import 'package:port/src/screens/Projects/projects.dart';
 import 'package:port/src/services/app_theme.dart';
 
 class Homepage extends ConsumerStatefulWidget {
@@ -35,14 +36,10 @@ class _HomepageState extends ConsumerState<Homepage> {
         actions: [
           TextButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute<dynamic>(
-                      builder: (context) => const Projects(),
-                    ));
+                context.goNamed(Routes.projects.name);
               },
               child: const Text("Projects")),
-          buildThemeToggle()
+          buildThemeToggle(),
         ],
       ),
       body: const SingleChildScrollView(
@@ -62,7 +59,7 @@ class _HomepageState extends ConsumerState<Homepage> {
               SizedBox(width: 1920, height: 700, child: AboutUsSection()),
               AnimatedSkills(),
               SizedBox(width: 1920, height: 700, child: CertificationSection()),
-              SizedBox(width: 1920, height: 600, child: ProfessionalFooter()),
+              SizedBox(width: 1920, height: 700, child: ProfessionalFooter()),
             ],
           ),
         ),

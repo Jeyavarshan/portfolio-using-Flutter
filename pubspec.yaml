@@ -27,6 +27,9 @@ dependencies:
   flutter_animate_on_scroll: ^0.1.1
   font_awesome_flutter: ^10.1.0
   visibility_detector: ^0.3.3
+  pretty_animated_buttons: ^0.0.2
+  universal_html: ^2.0.6
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
@@ -40,5 +43,6 @@ flutter:
     - assets/certificates/
     - assets/lottie/
     - assets/rive/
+    - assets/resume/
 flutter_gen:
   output: lib\src\core\assets\

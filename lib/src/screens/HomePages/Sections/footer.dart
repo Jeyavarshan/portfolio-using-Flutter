@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:port/src/core/utils/responsive_widget.dart';
+import 'dart:html';
 
-class ProfessionalFooter extends StatelessWidget {
+import '../../../core/utils/web_utils.dart';
+import '../../../services/file_download.dart';
+
+class ProfessionalFooter extends ConsumerStatefulWidget {
   const ProfessionalFooter({super.key});
 
   @override
+  ConsumerState<ProfessionalFooter> createState() => _ProfessionalFooterState();
+}
+
+class _ProfessionalFooterState extends ConsumerState<ProfessionalFooter> {
+  @override
   Widget build(BuildContext context) {
+    final fileDownloadService = ref.watch(fileDownloadProvider);
+
     Color primaryColor = Theme.of(context).colorScheme.surface;
     const Color accentColor = Color(0xFF4A60E6);
     Color textColor = Theme.of(context).colorScheme.onSurface;
@@ -48,11 +60,13 @@ class ProfessionalFooter extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    fileDownloadService.downloadResume();
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     padding: const EdgeInsets.symmetric(
-                        vertical: 14, horizontal: 35),
+                        vertical: 12, horizontal: 30),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25),
                     ),
@@ -61,7 +75,7 @@ class ProfessionalFooter extends StatelessWidget {
                     'Download Résumé',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.surface,
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -87,7 +101,8 @@ class ProfessionalFooter extends StatelessWidget {
                   icon: const Icon(FontAwesomeIcons.linkedin, size: 28),
                   color: iconColor,
                   tooltip: 'LinkedIn',
-                  onPressed: () {},
+                  onPressed: () => TWebUtils.openUrl(
+                      "https://www.linkedin.com/in/jeyavarshan-jayakumar-16b8461a0/"),
                   splashRadius: 24,
                 ),
                 const SizedBox(width: 18),
@@ -95,7 +110,8 @@ class ProfessionalFooter extends StatelessWidget {
                   icon: const Icon(FontAwesomeIcons.github, size: 28),
                   color: iconColor,
                   tooltip: 'GitHub',
-                  onPressed: () {},
+                  onPressed: () =>
+                      TWebUtils.openUrl("https://github.com/Jeyavarshan"),
                   splashRadius: 24,
                 ),
                 const SizedBox(width: 18),
@@ -103,7 +119,8 @@ class ProfessionalFooter extends StatelessWidget {
                   icon: const Icon(FontAwesomeIcons.twitter, size: 28),
                   color: iconColor,
                   tooltip: 'Twitter',
-                  onPressed: () {},
+                  onPressed: () =>
+                      TWebUtils.openUrl("https://github.com/Jeyavarshan"),
                   splashRadius: 24,
                 ),
               ],
@@ -184,7 +201,8 @@ class ProfessionalFooter extends StatelessWidget {
             Column(
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () =>
+                      downloadfile("assets/resume/Jeyavarshan-JPortfolio.pdf"),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     padding: const EdgeInsets.symmetric(
@@ -329,12 +347,16 @@ class ProfessionalFooter extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                     ),
                   ),
-                  child: Text(
-                    'Download Résumé',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.surface,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                  child: ElevatedButton(
+                    onPressed: () => downloadfile(
+                        "assets/resume/Jeyavarshan-JPortfolio.pdf"),
+                    child: Text(
+                      'Download Résumé',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.surface,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
@@ -445,5 +467,11 @@ class ProfessionalFooter extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  downloadfile(String url) {
+    AnchorElement anchorElement = AnchorElement(href: url);
+    anchorElement.download = "Jeyavarshan-J Portfolio";
+    anchorElement.click();
   }
 }

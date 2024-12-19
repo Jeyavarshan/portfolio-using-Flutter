@@ -452,153 +452,282 @@ class _SingleCompanyExperienceState extends State<SingleCompanyExperience> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        GestureDetector(
-          onTap: _triggerAnimation1,
-          onDoubleTap: _triggerAnimation2,
-          onDoubleTapCancel: _cancelAnimation2,
-          child: RiveAnimation.asset(
-            alignment: Alignment.centerLeft,
-            'rive/flutter_puzzle_hack_project.riv',
-            fit: BoxFit.fitHeight,
-            animations: const ['birb', "idle"],
-            controllers: [_controller1, _controller2],
-          ),
-        ),
-        GestureDetector(
-          onTap: _triggerAnimation1,
-          onDoubleTap: _triggerAnimation2,
-          child: RiveAnimation.asset(
-            alignment: Alignment.centerRight,
-            'rive/flutter_puzzle_hack_project.riv',
-            fit: BoxFit.fitHeight,
-            animations: const ['birb', "idle"],
-            controllers: [_controller1, _controller2],
-          ),
-        ),
-        Center(
-          child: Container(
-            width: 500,
-            padding: const EdgeInsets.all(20.0),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
-              borderRadius: BorderRadius.circular(15),
+    return ResponsiveWidget(
+      desktop: Stack(
+        children: [
+          GestureDetector(
+            onTap: _triggerAnimation1,
+            onDoubleTap: _triggerAnimation2,
+            onDoubleTapCancel: _cancelAnimation2,
+            child: RiveAnimation.asset(
+              alignment: Alignment.center,
+              'rive/flutter_puzzle_hack_project.riv',
+              fit: BoxFit.fitHeight,
+              animations: const ['birb', "idle"],
+              controllers: [_controller1, _controller2],
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.business,
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 200),
+            child: Container(
+              width: 500,
+              padding: const EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.business,
+                        color: Theme.of(context).colorScheme.primary,
+                        size: 40,
+                      ),
+                      const SizedBox(width: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'MenThee Technologies',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                          const Text(
+                            'Software Engineer',
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                          const Text(
+                            'April 2023 - Present',
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Achievements:',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                       color: Theme.of(context).colorScheme.primary,
-                      size: 40,
                     ),
-                    const SizedBox(width: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'MenThee Technologies',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                        ),
-                        const Text(
-                          'Software Engineer',
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                        const Text(
-                          'April 2023 - Present',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'Achievements:',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
                   ),
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  '• Led a team of 10 developers to deliver the flagship project ahead of schedule.',
-                  style: TextStyle(
-                    fontSize: 16,
+                  const SizedBox(height: 10),
+                  const Text(
+                    '• Led a team of 10 developers to deliver the flagship project ahead of schedule.',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 5),
-                const Text(
-                  '• Improved application performance by 30% through optimization techniques.',
-                  style: TextStyle(
-                    fontSize: 16,
+                  const SizedBox(height: 5),
+                  const Text(
+                    '• Improved application performance by 30% through optimization techniques.',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 5),
-                const Text(
-                  '• Spearheaded the migration of the tech stack to modern frameworks.',
-                  style: TextStyle(
-                    fontSize: 16,
+                  const SizedBox(height: 5),
+                  const Text(
+                    '• Spearheaded the migration of the tech stack to modern frameworks.',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'Technologies Used:',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
+                  const SizedBox(height: 20),
+                  Text(
+                    'Technologies Used:',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: [
-                    Chip(
-                      label: const Text('Flutter'),
-                      backgroundColor:
-                          Theme.of(context).colorScheme.inversePrimary,
-                    ),
-                    Chip(
-                      label: const Text('Dart'),
-                      backgroundColor:
-                          Theme.of(context).colorScheme.inversePrimary,
-                    ),
-                    Chip(
-                      label: const Text('RiverPod'),
-                      backgroundColor:
-                          Theme.of(context).colorScheme.inversePrimary,
-                    ),
-                    Chip(
-                      label: const Text('ASP .NET'),
-                      backgroundColor:
-                          Theme.of(context).colorScheme.inversePrimary,
-                    ),
-                    Chip(
-                      label: const Text('SQL'),
-                      backgroundColor:
-                          Theme.of(context).colorScheme.inversePrimary,
-                    ),
-                  ],
-                ),
-              ],
+                  const SizedBox(height: 10),
+                  Wrap(
+                    spacing: 10,
+                    runSpacing: 10,
+                    children: [
+                      Chip(
+                        label: const Text('Flutter'),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                      Chip(
+                        label: const Text('Dart'),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                      Chip(
+                        label: const Text('RiverPod'),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                      Chip(
+                        label: const Text('ASP .NET'),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                      Chip(
+                        label: const Text('SQL'),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
+      mobile: Stack(
+        children: [
+          GestureDetector(
+            onTap: _triggerAnimation1,
+            onDoubleTap: _triggerAnimation2,
+            onDoubleTapCancel: _cancelAnimation2,
+            child: RiveAnimation.asset(
+              alignment: Alignment.center,
+              'rive/flutter_puzzle_hack_project.riv',
+              fit: BoxFit.fitHeight,
+              animations: const ['birb', "idle"],
+              controllers: [_controller1, _controller2],
+            ),
+          ),
+          Center(
+            child: Container(
+              width: 500,
+              padding: const EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.business,
+                        color: Theme.of(context).colorScheme.primary,
+                        size: 40,
+                      ),
+                      const SizedBox(width: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'MenThee Technologies',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                          const Text(
+                            'Software Engineer',
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                          const Text(
+                            'April 2023 - Present',
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Achievements:',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    '• Led a team of 10 developers to deliver the flagship project ahead of schedule.',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  const Text(
+                    '• Improved application performance by 30% through optimization techniques.',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  const Text(
+                    '• Spearheaded the migration of the tech stack to modern frameworks.',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Technologies Used:',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Wrap(
+                    spacing: 10,
+                    runSpacing: 10,
+                    children: [
+                      Chip(
+                        label: const Text('Flutter'),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                      Chip(
+                        label: const Text('Dart'),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                      Chip(
+                        label: const Text('RiverPod'),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                      Chip(
+                        label: const Text('ASP .NET'),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                      Chip(
+                        label: const Text('SQL'),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:glitch_text/glitch_text.dart';
 import 'package:port/src/core/utils/responsive_widget.dart';
+import 'package:pretty_animated_buttons/pretty_animated_buttons.dart';
+import 'package:pretty_animated_buttons/widgets/pretty_shadow_button.dart';
 
 import '../../../common_widgets/typing_animation.dart';
 
@@ -53,7 +55,7 @@ class Homesection extends ConsumerWidget {
                         textAlign: TextAlign.center,
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
